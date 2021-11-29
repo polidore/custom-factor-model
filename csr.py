@@ -14,10 +14,9 @@ cm.set_index('factor_group', inplace=True)
 cm
 
 # %%
-glm = sm.GLM(data['total_return_1d'], data.iloc[:, 2:], freq_weights=data['wgt'])
+glm = sm.GLM(data['total_return_1d'], data.iloc[:, 2:], var_weights=data['wgt'])
 # %%
 res = glm.fit_constrained(constraints=(cm, np.zeros(shape=(len(cm)))))
-#res = glm.fit()
 res.summary()
 # %%
 
